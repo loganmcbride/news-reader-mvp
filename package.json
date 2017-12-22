@@ -1,19 +1,27 @@
 {
   "name": "news-reader-mvp",
   "version": "1.0.0",
-  "description": "//Welcome to my lyfe",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "react-dev": "webpack -d --watch",
+    "server-dev": "nodemon server/index.js"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Logan McBride",
   "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "webpack": "^2.2.1"
+  },
   "dependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-latest": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "webpack": "^3.10.0"
+    "body-parser": "^1.17.2",
+    "express": "^4.15.0",
+    "jquery": "^3.1.1",
+    "mongoose": "^4.8.6",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
   }
 }
