@@ -1,6 +1,6 @@
 var request = require('request');
 var api = require('../api_token.js');
-var axios = require('axios');
+
 
 var searchQuery = function(query, cb){
   request.get({
@@ -13,7 +13,6 @@ var searchQuery = function(query, cb){
   }, function(err, response, body) {
     if(err){return err}
     body = JSON.parse(body);
-    console.log('Stringified Body!! : ',JSON.stringify(body));
     cb(body);
   })
 };
