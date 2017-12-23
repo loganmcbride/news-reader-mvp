@@ -9,28 +9,45 @@ class App extends React.Component {
     super(props);
     this.state = {
       items: [],
-      value: ''
+      value: '',
+      history: []
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateQueryHistory = this.updateQueryHistory.bind(this);
+    this.clearHistory = this.clearHistory.bind(this);
+  }
+
+  updateQueryHistory() {
+    $.ajax({
+      url: '/items',
+      success: (data) => {
+        this.setState({
+          history: data
+        })
+      },
+      error: (err) => {
+        console.log('Mount err', err);
+      }
+    });
   }
 
   componentDidMount() {
-    // $.ajax({
-    //   url: '/items',
-    //   success: (data) => {
-    //     this.setState({
-    //       items: data
-    //     })
-    //   },
-    //   error: (err) => {
-    //     console.log('Mount err', err);
-    //   }
-    // });
+    this.updateQueryHistory();
   }
 
   handleChange(e) {
     this.setState({value: e.target.value})
+  }
+
+  clearHistory(e) {
+    axios.delete('/stories', {
+      params: {}
+    })
+    .then(data => {
+      this.updateQueryHistory();
+    })
+    .catch(err => console.log('error in clear Hist', err))
   }
 
   handleSubmit(e) {
@@ -45,14 +62,14 @@ class App extends React.Component {
         this.setState({
           items: data.data.response.docs
         })
+        this.updateQueryHistory();
       })
       .catch(err => console.log('error in submit', err))
-
   }
 
   render () {
     return (<div>
-      <h1>Logans News</h1>
+      <h1>All the News thats fit to be displayed digitally onscreen</h1>
       <form onSubmit={this.handleSubmit}>
         <label>
           Search by keyword:
@@ -60,7 +77,7 @@ class App extends React.Component {
         </label>
         <input type="submit" value="Submit" />
       </form>
-      <List items={this.state.items}/>
+      <List items={this.state.items} history={this.state.history} clickHandle={this.clearHistory}/>
     </div>)
   }
 }

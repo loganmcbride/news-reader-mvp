@@ -2,15 +2,17 @@
 
 
 USAGE:
-Start Server with this command -
+Start Server with this command:
 
-node server/index.js
+-node server/index.js
+-nodemon
+-mongod
 
 
 SETUP:
 
-npm install
+-npm install
 
 COMPILE:
 
-npm run compile
+-npm run compile
