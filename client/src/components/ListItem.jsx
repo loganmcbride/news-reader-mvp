@@ -5,7 +5,10 @@ const ListItem = (props) => (
     <h3>
       { props.item.headline.main }
     </h3>
-      { props.item.snippet }
+      <p> { props.item.snippet } </p>
+      { props.item.multimedia.length > 0 &&
+        <img src={"http://graphics8.nytimes.com/"+ props.item.multimedia[0].url}/>
+      }
   </div>
 )
 
